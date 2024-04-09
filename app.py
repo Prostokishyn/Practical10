@@ -9,12 +9,8 @@ from sklearn.metrics import accuracy_score
 # Завантаження датасету Iris
 iris = load_iris()
 
-# Створення DataFrame з даних та виведення перших рядків
+# Створення DataFrame з даних
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-print(df.head())
-
-# Виведення статистичних характеристик даних
-print(df.describe())
 
 # Розділення даних на навчальний та тестовий набори
 X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
@@ -35,9 +31,19 @@ svm.fit(X_train_scaled, y_train)
 # Оцінка логістичної регресії
 y_pred_logreg = logistic_reg.predict(X_test_scaled)
 accuracy_logreg = accuracy_score(y_test, y_pred_logreg)
-print("Accuracy of Logistic Regression:", accuracy_logreg)
 
 # Оцінка методу опорних векторів (SVM)
 y_pred_svm = svm.predict(X_test_scaled)
 accuracy_svm = accuracy_score(y_test, y_pred_svm)
+
+# Виведення перших рядків
+print(df.head())
+
+# Виведення статистичних характеристик даних
+print(df.describe())
+
+# Виведення оцінки логістичної регресії
+print("Accuracy of Logistic Regression:", accuracy_logreg)
+
+# Виведення оцінки методу опорних векторів
 print("Accuracy of SVM:", accuracy_svm)
